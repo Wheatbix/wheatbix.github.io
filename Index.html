@@ -1,0 +1,466 @@
+<html>
+    <head>
+        <title>Christmas</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+        
+        <script type="text/javascript" src="santa_man.js?v=1"></script>
+        
+        <script type="text/javascript">
+          var santa;
+          var masterTL;
+          var groundTL;
+          var cloudTL;
+          var mountainTL;
+          
+          $(document).ready(function () {
+            $("#Santa").SantaMan({ type: "Run" });
+            santa = $("#Santa").SantaMan("instance");
+            
+            $(".character.ninjagirl").each(function(index, item) {
+              $(item).css({ 
+                'left': getRandomInt(700, $(window).width() - 100) + "px",
+                'top': "-" + getRandomInt(10, 30) + "px",
+              });
+              $(item).SantaMan({ mainType: "NinjaGirl", type: "Run", animate: true, timing: 30, superNinjaFrenzy: false, height: 20 });
+            });
+            
+            $(".character.ninja").each(function(index, item) {
+              $(item).css({ 
+                'left': getRandomInt(700, $(window).width() - 100) + "px",
+                'top': "-" + getRandomInt(10, 30) + "px",
+              });
+              $(item).SantaMan({ mainType: "Ninja", type: "Run", animate: true, timing: 30, superNinjaFrenzy: false, height: 20 });
+            });
+            
+            masterTL = new TimelineMax({ repeat: -1 });
+            
+            window.onload = function() {
+              masterTL.add(getGround(), 0).add(getClouds(), 0).add(getMountains2(), 0).add(getMountains(), 0).timeScale(1.5).progress(1).progress(0).play();
+            };
+          });
+          
+          function getGround() {
+            groundTL = new TimelineMax({ repeat: -1 });
+
+            groundTL.to("#ground", 20, {
+              backgroundPosition: "-1920px 0px",
+              force3D: true,
+              rotation: 0.01,
+              z: 0.01,
+              autoRound: false,
+              ease: Linear.easeNone
+            });
+
+            return groundTL;
+          };
+
+          function getClouds() {
+            cloudTL = new TimelineMax({ repeat: -1 });
+
+            cloudTL.to("#clouds", 52, {
+              backgroundPosition: "2247px bottom",
+              force3D: true,
+              rotation: 0.01,
+              z: 0.01,
+              ease: Linear.easeNone
+            });
+            
+            return cloudTL;
+          };
+          
+          function getMountains2() {
+            mountainTL = new TimelineMax({ repeat: -1 });
+
+            mountainTL.to("#mountains2", 180, {
+              backgroundPosition: "-1880px 0px",
+              force3D: true,
+              rotation: 0.01,
+              z: 0.01,
+              autoRound: true,
+              ease: Linear.easeNone
+            });
+            
+            return mountainTL;
+          };
+          
+          function getMountains() {
+            mountainTL = new TimelineMax({ repeat: -1 });
+
+            mountainTL.to("#mountains", 1580, {
+              backgroundPosition: "-2000px 0px",
+              force3D: true,
+              rotation: 0.01,
+              z: 0.01,
+              autoRound: true,
+              ease: Linear.easeNone
+            });
+            
+            return mountainTL;
+          };
+        
+          function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+          }
+        </script>
+        
+        <style>
+          html {
+            height: 100%;
+            background: #63D0FF;
+          }
+
+          body{
+            margin: 0;
+            padding: 0;
+            background: #63D0FF;
+            height: 100%;
+          }
+
+          #wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+          }
+
+          .character {
+            position: absolute;
+            height: 100%;
+          }
+          
+            .character img {
+              position: absolute;
+              bottom: 0;
+            }
+            
+            .character.santa {
+              z-index: 4;
+            }
+            
+            .character.medium img {
+              height: 20%;
+              z-index: 3;
+            }
+           
+          #byteclub {
+            position: absolute;
+            z-index: 3;
+            opacity: 0.3;
+            width: 40%;
+            height: 40%;
+            right: 0px;
+            top: 70px;
+          }
+            #byteclub iframe {
+              width: 100%;
+              height: 100%;
+              border: none;
+            }
+        </style>
+        <style>
+          #clouds {
+            background:url("Clouds.png") repeat-x 0 bottom #ACE6FF;
+            width: 100%;
+            height: 230px;
+            min-height: 230px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            -webkit-transform: translate3d(0,0,0.01);
+            transform: translate3d(0,0,0.01);
+          }
+          
+          #mountains {
+            background: url("SnowMountains.png");
+            width: 100%;
+            height: 100%;
+            background-size: 2000px 1000px;
+            position: absolute;
+            top: 0px;
+            left: 0;
+            z-index: 3;
+            -webkit-transform: translate3d(0,0,0.01);
+            transform: translate3d(0,0,0.01);
+          }
+          
+          #mountains2 {
+            background: url("SnowMountains_2.png");
+            width: 104%;
+            height: 100%;
+            background-size: 1880px 915px;
+            position: absolute;
+            top: 0px;
+            left: -4%;
+            z-index: 3;
+            -webkit-transform: translate3d(0,0,0.01);
+            transform: translate3d(0,0,0.01);
+          }
+
+          #ground {   
+            background: url("SnowGround.png") repeat-x 0 0 transparent;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 3;
+            width: 100%;
+            height: 650px;
+            min-height: 650px;
+            border: 0 none transparent;
+            outline: 0 none transparent;
+            -webkit-transform: translate3d(0,0,0.01);
+            transform: translate3d(0,0,0.01);
+            will-change: transform;
+          }
+         </style>
+        <style>
+          /* Snow */
+          #snow{
+            background: none;
+            font-family: Androgyne;
+            background-image: url('http://www.wearewebstars.dk/codepen/img/s1.png'), url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 4;
+            -webkit-animation:  snow 25s linear infinite;
+            -moz-animation:     snow 25s linear infinite;
+            -ms-animation:      snow 25s linear infinite;
+            animation:          snow 25s linear infinite;
+          }
+          @keyframes snow {
+            0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+            50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+            100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+          }
+          @-moz-keyframes snow {
+            0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+            50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+            100% {background-position: 400px 1000px, 200px 400px, 100px 300px;}
+          }
+          @-webkit-keyframes snow {
+            0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+            50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+            100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+          }
+          @-ms-keyframes snow {
+            0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+            50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+            100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+          }
+        </style>
+        <style>
+          /* Lights */
+          .lightrope {
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            position: absolute;
+            z-index: 5;
+            margin: -15px 0 0 0;
+            padding: 0;
+            pointer-events: none;
+            width: 100%;
+          }
+          .lightrope li {
+            position: relative;
+            -webkit-animation-fill-mode: both;
+                    animation-fill-mode: both;
+            -webkit-animation-iteration-count: infinite;
+                    animation-iteration-count: infinite;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: block;
+            width: 12px;
+            height: 28px;
+            border-radius: 50%;
+            margin: 20px;
+            display: inline-block;
+            background: #018459;
+            box-shadow: 0px 4.66667px 24px 3px #018459;
+            -webkit-animation-name: flash-1;
+                    animation-name: flash-1;
+            -webkit-animation-duration: 2s;
+                    animation-duration: 2s;
+          }
+          .lightrope li:nth-child(2n+1) {
+            background: cyan;
+            box-shadow: 0px 4.66667px 24px 3px rgba(0, 255, 255, 0.5);
+            -webkit-animation-name: flash-2;
+                    animation-name: flash-2;
+            -webkit-animation-duration: 0.4s;
+                    animation-duration: 0.4s;
+          }
+          .lightrope li:nth-child(4n+2) {
+            background: #f70094;
+            box-shadow: 0px 4.66667px 24px 3px #f70094;
+            -webkit-animation-name: flash-3;
+                    animation-name: flash-3;
+            -webkit-animation-duration: 1.1s;
+                    animation-duration: 1.1s;
+          }
+          .lightrope li:nth-child(odd) {
+            -webkit-animation-duration: 1.8s;
+                    animation-duration: 1.8s;
+          }
+          .lightrope li:nth-child(3n+1) {
+            -webkit-animation-duration: 1.4s;
+                    animation-duration: 1.4s;
+          }
+          .lightrope li:before {
+            content: "";
+            position: absolute;
+            background: #222;
+            width: 10px;
+            height: 9.33333px;
+            border-radius: 3px;
+            top: -4.66667px;
+            left: 1px;
+          }
+          .lightrope li:after {
+            content: "";
+            top: -14px;
+            left: 9px;
+            position: absolute;
+            width: 52px;
+            height: 18.66667px;
+            border-bottom: solid #222 2px;
+            border-radius: 50%;
+          }
+          .lightrope li:last-child:after {
+            content: none;
+          }
+          .lightrope li:first-child {
+            margin-left: -40px;
+          }
+          @-webkit-keyframes flash-1 {
+            0%, 100% {
+              background: #018459;
+              box-shadow: 0px 4.66667px 24px 3px #018459;
+            }
+            50% {
+              background: rgba(0, 247, 165, 0.4);
+              box-shadow: 0px 4.66667px 24px 3px rgba(0, 247, 165, 0.2);
+            }
+          }
+          @keyframes flash-1 {
+            0%, 100% {
+              background: #018459;
+              box-shadow: 0px 4.66667px 24px 3px #018459;
+            }
+            50% {
+              background: rgba(0, 247, 165, 0.4);
+              box-shadow: 0px 4.66667px 24px 3px rgba(0, 247, 165, 0.2);
+            }
+          }
+          @-webkit-keyframes flash-2 {
+            0%, 100% {
+              background: red;
+              box-shadow: 0px 4.66667px 24px 3px red;
+            }
+            50% {
+              background: rgba(0, 255, 255, 0.4);
+              box-shadow: 0px 4.66667px 24px 3px rgba(0, 255, 255, 0.2);
+            }
+          }
+          @keyframes flash-2 {
+            0%, 100% {
+              background: red;
+              box-shadow: 0px 4.66667px 24px 3px red;
+            }
+            50% {
+              background: rgba(0, 255, 255, 0.4);
+              box-shadow: 0px 4.66667px 24px 3px rgba(0, 255, 255, 0.2);
+            }
+          }
+          @-webkit-keyframes flash-3 {
+            0%, 100% {
+              background: #f70094;
+              box-shadow: 0px 4.66667px 24px 3px #f70094;
+            }
+            50% {
+              background: rgba(247, 0, 148, 0.4);
+              box-shadow: 0px 4.66667px 24px 3px rgba(247, 0, 148, 0.2);
+            }
+          }
+          @keyframes flash-3 {
+            0%, 100% {
+              background: #f70094;
+              box-shadow: 0px 4.66667px 24px 3px #f70094;
+            }
+            50% {
+              background: rgba(247, 0, 148, 0.4);
+              box-shadow: 0px 4.66667px 24px 3px rgba(247, 0, 148, 0.2);
+            }
+          }
+        </style>
+    </head>
+    <body>
+      <div id="wrapper">
+        <div id="mountains"></div>
+        <div id="byteclub">
+          <iframe src="logo/index.html"></iframe>
+        </div>
+        <ul class="lightrope">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <div id="snow"></div>
+        
+        <div id="mountains2"></div>
+        <div id="clouds"></div>
+        <div id="ground"></div>
+        <div id="Santa" class="character santa"></div>
+        <div class="character medium ninja"></div>
+        <div class="character medium ninjagirl"></div>
+        <div class="character medium ninja"></div>
+        <div class="character medium ninjagirl"></div>
+        <div class="character medium ninja"></div>
+        <div class="character medium ninjagirl"></div>
+      </div>
+    </body>
+</html>
