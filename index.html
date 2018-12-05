@@ -59,7 +59,7 @@
           function getClouds() {
             cloudTL = new TimelineMax({ repeat: -1 });
 
-            cloudTL.to("#clouds", 52, {
+            cloudTL.to("#clouds", 252, {
               backgroundPosition: "2247px bottom",
               force3D: true,
               rotation: 0.01,
@@ -173,10 +173,10 @@
           }
           
           #mountains {
-            background: url("SnowMountains.png");
+            background: url("Mountains_Background.png");
             width: 100%;
             height: 100%;
-            background-size: 2000px 1000px;
+            background-size: 2500px 1000px;
             position: absolute;
             top: 0px;
             left: 0;
@@ -186,7 +186,7 @@
           }
           
           #mountains2 {
-            background: url("SnowMountains_2.png");
+            background: url("Mountains_Forground.png");
             width: 104%;
             height: 100%;
             background-size: 1880px 915px;
@@ -219,7 +219,7 @@
           #snow{
             background: none;
             font-family: Androgyne;
-            background-image: url('http://www.wearewebstars.dk/codepen/img/s1.png'), url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
+            background-image: url('s1.png'), url('s2.png'), url('s3.png');
             height: 100%;
             left: 0;
             position: absolute;
@@ -402,9 +402,6 @@
     <body>
       <div id="wrapper">
         <div id="mountains"></div>
-        <div id="byteclub">
-          <iframe src="logo/index.html"></iframe>
-        </div>
         <ul class="lightrope">
           <li></li>
           <li></li>
