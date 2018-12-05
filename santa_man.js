@@ -26,6 +26,7 @@ $.widget("christmas.SantaMan", {
     { type: "Climb",        frames: 9 },
     { type: "Dead",         frames: 9 },
     { type: "Glide",        frames: 9 },
+    { type: "Jump",         frames: 9 },
     { type: "Jump_Attack",  frames: 9 },
     { type: "Jump_Throw",   frames: 9 },
     { type: "Run",          frames: 9 },
@@ -286,15 +287,12 @@ $.widget("christmas.SantaMan", {
       
       if (self.options.superNinjaFrenzy) {
         var alternate = self._getRandomInt(0, 1);
-        //alternate = 0;
+
         if (alternate == 0) {
           self.changeType("Jump_Attack");
         }
         else if (alternate == 1) {
           self.changeType("Jump_Throw");
-        }
-        else if (alternate == 2) {
-          self.changeType("Throw");
         }
       }
       

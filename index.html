@@ -18,28 +18,48 @@
             $("#Santa").SantaMan({ type: "Run" });
             santa = $("#Santa").SantaMan("instance");
             
-            $(".character.ninjagirl").each(function(index, item) {
-              $(item).css({ 
-                'left': getRandomInt(700, $(window).width() - 100) + "px",
-                'top': "-" + getRandomInt(10, 30) + "px",
-              });
-              $(item).SantaMan({ mainType: "NinjaGirl", type: "Run", animate: true, timing: 30, superNinjaFrenzy: false, height: 20 });
-            });
-            
-            $(".character.ninja").each(function(index, item) {
-              $(item).css({ 
-                'left': getRandomInt(700, $(window).width() - 100) + "px",
-                'top': "-" + getRandomInt(10, 30) + "px",
-              });
-              $(item).SantaMan({ mainType: "Ninja", type: "Run", animate: true, timing: 30, superNinjaFrenzy: false, height: 20 });
-            });
-            
+            createNinja(1, 1);
+
             masterTL = new TimelineMax({ repeat: -1 });
             
             window.onload = function() {
               masterTL.add(getGround(), 0).add(getClouds(), 0).add(getMountains2(), 0).add(getMountains(), 0).timeScale(1.5).progress(1).progress(0).play();
             };
           });
+
+          function createNinja(numberNinja, numberNinjaGirl, superNinjaFrenzy) {
+            var $wrapper = $("#wrapper");
+            
+            $wrapper.find(".ninja, .ninjagirl").remove();
+
+            if (superNinjaFrenzy == null) {
+              superNinjaFrenzy = false;
+            }
+
+            for (var i = 0; i < numberNinja; i++) {
+              $("#wrapper").append($('<div/>', { class: 'character medium ninja' }));
+            }
+            
+            $(".character.ninja").each(function(index, item) {
+              $(item).css({ 
+                'left': getRandomInt(700, $(window).width() - 100) + "px",
+                'top': "-" + getRandomInt(10, 30) + "px",
+              });
+              $(item).SantaMan({ mainType: "Ninja", type: "Run", animate: true, timing: 30, superNinjaFrenzy: superNinjaFrenzy, height: 20 });
+            });
+
+            for (var i = 0; i < numberNinjaGirl; i++) {
+              $("#wrapper").append($('<div/>', { class: 'character medium ninjagirl' }));
+            }
+
+            $(".character.ninjagirl").each(function(index, item) {
+              $(item).css({ 
+                'left': getRandomInt(700, $(window).width() - 100) + "px",
+                'top': "-" + getRandomInt(10, 30) + "px",
+              });
+              $(item).SantaMan({ mainType: "NinjaGirl", type: "Run", animate: true, timing: 30, superNinjaFrenzy: superNinjaFrenzy, height: 20 });
+            });
+          }
           
           function getGround() {
             groundTL = new TimelineMax({ repeat: -1 });
@@ -451,8 +471,8 @@
         <div id="clouds"></div>
         <div id="ground"></div>
         <div id="Santa" class="character santa"></div>
-        <div class="character medium ninja"></div>
-        <div class="character medium ninjagirl"></div>
+        <!-- <div class="character medium ninja"></div>
+        <div class="character medium ninjagirl"></div> -->
       </div>
     </body>
 </html>
