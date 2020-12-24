@@ -1,6 +1,6 @@
 $.widget("Sprite.Character", {
   options: {
-    mainType: "Santa",
+    mainType: "santa",
     type: "Walk",
     timing: 60,
     animate: false,
